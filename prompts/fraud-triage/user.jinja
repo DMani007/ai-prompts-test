@@ -1,0 +1,19 @@
+Transaction details:
+  ID:        {{ transaction.id }}
+  Amount:    {{ transaction.amount }} {{ transaction.currency }}
+  Merchant:  {{ transaction.merchant_name }} ({{ transaction.mcc }})
+  Location:  {{ transaction.city }}, {{ transaction.country }}
+  Time:      {{ transaction.timestamp }}
+
+Cardholder context:
+  Recent spend (30d avg): {{ cardholder.avg_monthly_spend }}
+  Home country:           {{ cardholder.home_country }}
+
+Retrieved fraud policies:
+{% for doc in retrieved_docs %}
+---
+[{{ doc.id }}] {{ doc.title }}
+{{ doc.content }}
+{% endfor %}
+
+Classify this transaction and return JSON only.
