@@ -1,0 +1,32 @@
+name: Fraud Triage Prompt
+description: Classifies incoming card transactions as fraud or legitimate
+version: 1.0.0
+owner: Dhananjay
+owner_email: dhananjay@example.com
+team: Risk Engineering
+model: anthropic.claude-sonnet-4-20250514-v1:0
+system_prompt: ./system.md
+user_prompt_template: ./user.jinja
+inference:
+  temperature: 0.1
+  max_tokens: 1024
+  top_p: 0.9
+rag:
+  knowledge_base: kb_fraud_policies
+  top_k: 5
+  reranker: cohere-v3
+tools: []
+guardrails:
+  pii_filter: true
+  topics_disallow:
+    - medical_advice
+    - legal_advice
+evals:
+  golden_set: ./evals/golden.jsonl
+  thresholds:
+    groundedness: 0.85
+    hallucination_rate: 0.05
+tags:
+  - fraud
+  - classification
+  - production-candidate
