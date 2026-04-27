@@ -1,0 +1,35 @@
+name: Acme Bank Fraud Console
+description: Real-time fraud classifier for card transactions. Returns structured JSON with decision, confidence, and reasoning.
+version: 1.0.0
+
+owner: Acme Bank Risk Team
+owner_email: risk-oncall@acme-bank.local
+team: Payments Risk
+
+tags:
+  - acme-bank
+  - fraud
+  - card-transactions
+  - bedrock-demo
+provider: bedrock
+model: us.anthropic.claude-3-5-haiku-20241022-v1:0
+
+system_prompt: ./system.md
+user_prompt_template: ./user.jinja
+
+inference:
+  temperature: 0.0
+  max_tokens: 256
+  top_p: 0.9
+
+guardrails:
+  pii_filter: true
+  topics_disallow:
+    - legal_advice
+    - medical_advice
+    - financial_advice_personal
+
+evals:
+  thresholds:
+    json_schema_compliance: 0.99
+    decision_consistency: 0.95
