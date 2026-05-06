@@ -1,0 +1,20 @@
+Loan-eligibility pre-screening request:
+
+- application_id:        {{ application_id }}
+- product:               {{ product }}
+- requested_amount_usd:  {{ requested_amount_usd }}
+- term_months:           {{ term_months }}
+- max_offer_for_tier:    {{ max_offer_for_tier }}
+
+Applicant signals (de-identified — never include name, DOB, SSN, ZIP):
+- applicant_country:       {{ applicant_country }}
+- credit_score:            {{ credit_score }}
+- annual_income_usd:       {{ annual_income_usd }}
+- monthly_debt_usd:        {{ monthly_debt_usd }}
+- dti_ratio:               {{ dti_ratio }}
+- employment_status:       {{ employment_status }}
+- employment_years:        {{ employment_years }}
+- no_recent_delinquency:   {{ no_recent_delinquency }}
+- existing_loan_count:     {{ existing_loan_count }}
+
+Pre-screen per the system instructions. Reply with the JSON object only.
